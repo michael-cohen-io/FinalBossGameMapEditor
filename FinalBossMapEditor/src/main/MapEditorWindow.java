@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
@@ -38,6 +39,7 @@ class MapEditorWindow extends JFrame implements Observer{
     
     BufferedImage[][] b;
     
+    ArrayList<Tile> tileList = new ArrayList<Tile>();
     
 
     public MapEditorWindow() {       
@@ -110,7 +112,8 @@ class MapEditorWindow extends JFrame implements Observer{
                                 splitter = new ImageSplitter(image, tileWidth, tileHeight);
                                 for(int y = 0; y < splitter.getY(); y++ ){
                                     for(int x = 0; x < splitter.getX(); x++ ){
-                                        splitter.getTile(x, y);
+                                        
+                                        //tileList.add(new Tile(y + x + 1 , splitter.getTile(x, y)));
                                     }   
                                 }
                                 
