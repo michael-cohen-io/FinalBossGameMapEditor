@@ -4,11 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -57,11 +63,46 @@ class MapEditorWindow extends JFrame implements Observer{
         center.add(mapScrollPane);
         center.add(sprites);
         
+        addMenu();
+        
         //Set up Window
         this.setTitle("FINAL BOSS Map Editor v1");
         this.setSize(Main.WIDTH + 350, Main.HEIGHT + 200);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+        
+       
+    }
+    
+    private void addMenu(){
+    	JMenu fileMenu = new JMenu("File");
+		JMenuItem run = new JMenuItem("Choose Sprite Sheet");
+		JMenuItem exit = new JMenuItem("Exit");
+		
+		run.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				//add choose method call here
+			}
+
+		});
+
+		exit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				System.exit(0);	
+			}
+
+		});
+		
+		fileMenu.add(run);
+		fileMenu.add(exit);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.add(fileMenu);
+		this.setJMenuBar(menuBar);
     }
     
     public int getMapWidth() {
