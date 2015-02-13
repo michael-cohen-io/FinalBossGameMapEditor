@@ -16,26 +16,30 @@ public class MapPanel extends JPanel {
     
     public MapPanel(MapEditorWindow w){
         this.w = w;
-        this.setBackground(Color.PINK);
         panelWidth = w.getMapWidth() * w.getTileWidth();
         panelHeight = w.getMapHeight() * w.getTileHeight();
         this.setMaximumSize(new Dimension(panelWidth, panelHeight));
     }
     
-    public void setSize(){
-        //super.setSize(WIDTH, WIDTH);
+    public void resetPanelWidth(){
+        panelWidth = w.getMapWidth() * w.getTileWidth();
+        repaint();
+    }
+    
+    public void resetPanelHeight(){
+        panelHeight = w.getMapHeight() * w.getTileHeight();
+        repaint();
     }
     
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        for(int x = w.getTileWidth()-1; x < panelWidth; x += w.getTileWidth() ){
+        for(int x = w.getTileWidth(); x <= panelWidth; x += w.getTileWidth() ){
             g.drawLine(x,0,x,panelHeight);
         }
         
-        for(int y = w.getTileWidth()-1; y < panelWidth; y += w.getTileWidth() ){
-            g.drawLine(0,y,panelHeight,y);
+        for(int y = w.getTileHeight(); y <= panelHeight; y += w.getTileHeight() ){
+            g.drawLine(0,y,panelWidth,y);
         }
-        
     }
 }
