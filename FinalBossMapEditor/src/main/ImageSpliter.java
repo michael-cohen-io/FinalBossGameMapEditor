@@ -42,7 +42,7 @@ public class ImageSpliter {
 		System.out.println("Image width " + sheetWidth + " sheet height " + sheetHeight);
 		System.out.println("Tile Width " + tileWidth + " tile height " + tileHeight);
 		System.out.println("x=" + x + " y=" + y);
-		for( int j = 0; j < y - 1; ++j){
+		for( int j = 0; j < y; ++j){
 			for( int i = 0; i < x; ++i){
 				image[i][j] = img.getSubimage(xPos, yPos, tileWidth, tileHeight);
 				System.out.println("i=" + i + " j=" + j + " " + xPos + " , " +  yPos);
