@@ -20,7 +20,7 @@ import main.ImageSpliter;
  */
 public class TestWindow extends JFrame{
 	BufferedImage image;
-	String path = "/Users/hanif/Documents/school/spring15/cop4331/MapEditor/FinalBossMapEditor/src/Tests/tmw_desert_spacing.png";
+	String path = "tmw_desert_spacing.png";
 	int imageWidth;
 	int imageHeight;
 	int tileWidth , tileHeight;
@@ -30,7 +30,8 @@ public class TestWindow extends JFrame{
 		this.tileWidth = tileWidth;
 		
 		try {
-			image = ImageIO.read(new File(path));
+			//image = ImageIO.read(new File(path));
+			image = ImageIO.read(getClass().getResource("/resources/tmw_desert_spacing.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
