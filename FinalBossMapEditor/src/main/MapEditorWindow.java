@@ -6,11 +6,18 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -26,6 +33,10 @@ class MapEditorWindow extends JFrame implements Observer{
     
     private int mapWidth = 10, mapHeight = 10, tileWidth = 32, tileHeight = 32;
     private MapPanel map;
+    private JFileChooser chooser;
+    private ImageSplitter splitter;
+    
+    BufferedImage[][] b;
     
     
 
@@ -51,6 +62,11 @@ class MapEditorWindow extends JFrame implements Observer{
         
         
         JPanel sprites = new JPanel();
+        for(int y = 0; y < splitter.getY(); y++ ){
+            for(int x = 0; x < splitter.getX(); x++ ){
+                splitter.getTile(x, y);
+            }   
+        }
         sprites.setBackground(Color.yellow);
         sprites.setMaximumSize(new Dimension(300,300));
         
@@ -63,7 +79,10 @@ class MapEditorWindow extends JFrame implements Observer{
         center.add(mapScrollPane);
         center.add(sprites);
         
+        //Set up menu
         addMenu();
+        //Set up jChooser
+        chooser = new JFileChooser();
         
         //Set up Window
         this.setTitle("FINAL BOSS Map Editor v1");
@@ -77,13 +96,25 @@ class MapEditorWindow extends JFrame implements Observer{
     private void addMenu(){
     	JMenu fileMenu = new JMenu("File");
 		JMenuItem run = new JMenuItem("Choose Sprite Sheet");
+                JMenuItem save = new JMenuItem("Save Map XML");
 		JMenuItem exit = new JMenuItem("Exit");
 		
 		run.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent event)
 			{
-				//add choose method call here
+                            int choice = chooser.showOpenDialog(null);
+                            File file = null;
+                            if(choice == JFileChooser.APPROVE_OPTION){
+                               file = chooser.getSelectedFile();
+                            }
+                            try {
+                                BufferedImage image = ImageIO.read(file); //add choose method call here
+                                splitter = new ImageSplitter(image, tileWidth, tileHeight);
+                                
+                            } catch (IOException ex) {
+                                Logger.getLogger(MapEditorWindow.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 			}
 
 		});
@@ -98,6 +129,7 @@ class MapEditorWindow extends JFrame implements Observer{
 		});
 		
 		fileMenu.add(run);
+                fileMenu.add(save);
 		fileMenu.add(exit);
 		
 		JMenuBar menuBar = new JMenuBar();

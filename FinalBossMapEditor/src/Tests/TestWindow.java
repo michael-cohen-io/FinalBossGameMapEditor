@@ -14,7 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import main.ImageSpliter;
+import main.ImageSplitter;
 /*
  * @author: hanif
  */
@@ -24,7 +24,7 @@ public class TestWindow extends JFrame{
 	int imageWidth;
 	int imageHeight;
 	int tileWidth , tileHeight;
-	ImageSpliter splitter;
+	ImageSplitter splitter;
 	int x , y;
 	//int width , height;
 	public TestWindow(int tileWidth , int tileHeight , int w , int h){
@@ -49,7 +49,7 @@ public class TestWindow extends JFrame{
 		this.setTitle("ImageSplitter Test");
 		this.setSize(w , h);
 		
-		splitter =  new ImageSpliter(image, imageWidth, imageHeight, 
+		splitter =  new ImageSplitter(image, 
 				tileWidth, tileHeight);
 		
 		/*

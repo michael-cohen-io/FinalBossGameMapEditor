@@ -8,19 +8,19 @@ import java.awt.image.BufferedImage;
  * 
  * @author: Hanif 
  */
-public class ImageSpliter {
+public class ImageSplitter {
 	private BufferedImage img;
 	private int sheetHeight;
 	private int sheetWidth;
 	private int tileWidth;
 	private int tileHeight;
 	
-	private int x;
-	private int y;
+	private int x; //Number of tiles horizontal
+	private int y; //Number of tiles vertical
 	
 	BufferedImage[][] tiles;
 	
-	public ImageSpliter(BufferedImage i, 
+	public ImageSplitter(BufferedImage i, 
 			int tWidth, int tHeight){
 		img = i;
 		sheetWidth = i.getWidth();
@@ -59,6 +59,16 @@ public class ImageSpliter {
 	public BufferedImage getTile(int i , int j){
 		return tiles[i][j];
 	}
+        
+        //The number of tiles horizontal
+        public int getX(){
+            return x;
+        }
+        
+        //The number of tiles vertically
+        public int getY(){
+            return y;
+        }
 	
 	public BufferedImage[][] getTileArray(){
 		return tiles;
