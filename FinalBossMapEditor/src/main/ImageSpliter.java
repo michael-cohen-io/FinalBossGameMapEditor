@@ -20,11 +20,11 @@ public class ImageSpliter {
 	
 	BufferedImage[][] tiles;
 	
-	public ImageSpliter(BufferedImage i, int shWidth, int shHeight, 
+	public ImageSpliter(BufferedImage i, 
 			int tWidth, int tHeight){
 		img = i;
-		sheetWidth = shWidth;
-		sheetHeight = shHeight;
+		sheetWidth = i.getWidth();
+		sheetHeight = i.getHeight();
 		tileHeight = tHeight;
 		tileWidth = tWidth;
 		
