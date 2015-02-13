@@ -31,7 +31,7 @@ public class TestWindow extends JFrame{
 		
 		try {
 			//image = ImageIO.read(new File(path));
-			image = ImageIO.read(getClass().getResource("/resources/tmw_desert_spacing.png"));
+			image = ImageIO.read(getClass().getResource("/resources/tiles-map.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class TestWindow extends JFrame{
 		ImageSpliter spliter = new ImageSpliter(image, imageWidth, imageHeight, 
 				tileWidth, tileHeight);
 		BufferedImage[][] tiles = spliter.getTileArray();
-		JLabel tile = new JLabel(new ImageIcon(tiles[1][0]));
+		JLabel tile = new JLabel(new ImageIcon(tiles[0][0]));
 		add(tile);
 		
 		
