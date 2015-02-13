@@ -8,7 +8,7 @@ public class ImageSpliterTest {
 	
 	public static void main(String [] args)
 	{
-		JFrame frame = new TestWindow(16, 16, WIDTH, HEIGHT);
+		JFrame frame = new TestWindow(64, 64, WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
