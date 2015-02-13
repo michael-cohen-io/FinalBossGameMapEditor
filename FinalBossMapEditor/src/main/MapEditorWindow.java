@@ -71,12 +71,12 @@ class MapEditorWindow extends JFrame implements Observer{
         Container c = this.getContentPane();
         //c.setLayout(null);
         c.add(north, BorderLayout.NORTH);
-        c.add(mapScrollPane);
-        c.add(sprites);
+        //c.add(mapScrollPane);
+        //c.add(sprites);
         c.add(south, BorderLayout.SOUTH);
         
-        //center.add(mapScrollPane);
-        //center.add(sprites);
+        center.add(mapScrollPane);
+        center.add(sprites);
         
         //Set up menu
         addMenu();
