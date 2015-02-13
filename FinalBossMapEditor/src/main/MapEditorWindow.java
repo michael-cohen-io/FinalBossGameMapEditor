@@ -43,11 +43,13 @@ class MapEditorWindow extends JFrame implements Observer{
     public MapEditorWindow() {       
         JPanel north = new JPanel();
         north.setBackground(Color.white);
+        JPanel south = new JPanel();
+        north.setBackground(Color.white);
         
         north.add(new JField("Map Width", mapWidth, this));
         north.add(new JField("Map Height", mapHeight, this));
-        north.add(new JField("Tile Width", tileWidth, this ));
-        north.add(new JField("Tile Height", tileHeight, this));
+        south.add(new JField("Tile Width", tileWidth, this ));
+        south.add(new JField("Tile Height", tileHeight, this));
         
         JPanel center = new JPanel();
         center.setLayout(new BoxLayout(center, BoxLayout.LINE_AXIS));
@@ -62,11 +64,6 @@ class MapEditorWindow extends JFrame implements Observer{
         
         
         JPanel sprites = new JPanel();
-        for(int y = 0; y < splitter.getY(); y++ ){
-            for(int x = 0; x < splitter.getX(); x++ ){
-                splitter.getTile(x, y);
-            }   
-        }
         sprites.setBackground(Color.yellow);
         sprites.setMaximumSize(new Dimension(300,300));
         
@@ -74,10 +71,12 @@ class MapEditorWindow extends JFrame implements Observer{
         Container c = this.getContentPane();
         //c.setLayout(null);
         c.add(north, BorderLayout.NORTH);
-        c.add(center);
+        c.add(mapScrollPane);
+        c.add(sprites);
+        c.add(south, BorderLayout.SOUTH);
         
-        center.add(mapScrollPane);
-        center.add(sprites);
+        //center.add(mapScrollPane);
+        //center.add(sprites);
         
         //Set up menu
         addMenu();
@@ -111,6 +110,11 @@ class MapEditorWindow extends JFrame implements Observer{
                             try {
                                 BufferedImage image = ImageIO.read(file); //add choose method call here
                                 splitter = new ImageSplitter(image, tileWidth, tileHeight);
+                                for(int y = 0; y < splitter.getY(); y++ ){
+                                    for(int x = 0; x < splitter.getX(); x++ ){
+                                        splitter.getTile(x, y);
+                                    }   
+                                }
                                 
                             } catch (IOException ex) {
                                 Logger.getLogger(MapEditorWindow.class.getName()).log(Level.SEVERE, null, ex);

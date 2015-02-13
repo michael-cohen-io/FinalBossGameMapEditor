@@ -39,9 +39,6 @@ public class ImageSplitter {
 		BufferedImage[][] image = new BufferedImage[x][y];
 		int xPos = 0;
 		int yPos = 0;
-		System.out.println("Image width " + sheetWidth + " sheet height " + sheetHeight);
-		System.out.println("Tile Width " + tileWidth + " tile height " + tileHeight);
-		System.out.println("x=" + x + " y=" + y);
 		for( int j = 0; j < y; ++j){
 			for( int i = 0; i < x; ++i){
 				image[i][j] = img.getSubimage(xPos, yPos, tileWidth, tileHeight);
