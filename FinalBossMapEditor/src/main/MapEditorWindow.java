@@ -9,14 +9,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -29,6 +32,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -114,12 +120,14 @@ class MapEditorWindow extends JFrame implements Observer {
         JMenu fileMenu = new JMenu("File");
         JMenu saveMenu = new JMenu("Save to...");
         JMenu showMenu = new JMenu("Show");
+       
         showGridItem = new JCheckBoxMenuItem("Show Grid", true);
         JMenuItem run = new JMenuItem("Choose Sprite Sheet...");
-        
+        JMenuItem loadMenu = new JMenuItem("Load");
         
         JMenuItem saveToXML = new JMenuItem("XML");
         JMenuItem saveToGIF = new JMenuItem("GIF");
+        
         JMenuItem exit = new JMenuItem("Exit");
 
         showGridItem.addActionListener(new ActionListener(){
@@ -196,10 +204,41 @@ class MapEditorWindow extends JFrame implements Observer {
                 }
            } 
         });
+        
+        loadMenu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                //chooser.setSelectedFile(new File("untitled.xml"));
+                int choice = chooser.showSaveDialog(null);
+
+                if (choice == JFileChooser.APPROVE_OPTION) {
+                    File loadFile = chooser.getSelectedFile();
+                    try {
+						InputStream is = new FileInputStream(loadFile);
+						Tile[][] tiles = SavedMapLoader.getTiles(is, getMapWidth(), getMapHeight());
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                    //save(saveFile);
+ catch (ParserConfigurationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SAXException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                }
+            }
+
+        });
 
         //File
         fileMenu.add(run);
         fileMenu.add(saveMenu);
+        fileMenu.add(loadMenu);
         fileMenu.add(exit);
         //Show
         showMenu.add(showGridItem);
