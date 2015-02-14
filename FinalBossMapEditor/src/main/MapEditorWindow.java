@@ -171,7 +171,7 @@ class MapEditorWindow extends JFrame implements Observer{
     private void save(File saveFile){
     	XMLWriter writer = new XMLWriter(map.getTileArray() , 
     			saveFile, mapWidth, mapHeight);
-    	//writer.save();
+    	//upon construction, writer should save the file
     }
     
     public int getMapWidth() {
