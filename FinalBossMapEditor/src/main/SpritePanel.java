@@ -26,7 +26,6 @@ public class SpritePanel extends JPanel {
         this.addMouseListener(new MouseListener() {
 
             public void mouseClicked(MouseEvent e) {
-                System.out.println(e.getPoint());
                 if (tileArray != null) {
                     for (int x = 0; x < tileArray.length; x++) {
                         for (int y = 0; y < tileArray[y].length; y++) {
@@ -41,19 +40,7 @@ public class SpritePanel extends JPanel {
 
             public void mousePressed(MouseEvent e) {}
             public void mouseReleased(MouseEvent e) {}
-            public void mouseEntered(MouseEvent e) {
-                System.out.println(e.getPoint());
-                if (tileArray != null) {
-                    for (int x = 0; x < tileArray.length; x++) {
-                        for (int y = 0; y < tileArray[y].length; y++) {
-                            if(tileArray[x][y].getBounds().containtsPoint(e.getPoint())){
-                                w.setSelectedTile(tileArray[x][y]);
-                            }
-                        }
-                    }
-                }
-            
-            }
+            public void mouseEntered(MouseEvent e) {}
             public void mouseExited(MouseEvent e) {}
 
         });
@@ -85,14 +72,9 @@ public class SpritePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        /*for(int i = 0; i < imageList.size(); i++){
-         g.drawImage(imageList.get(i), i*w.getTileWidth(), 0, this);
-         }*/
-
         if (tileArray != null) {
             for (int x = 0; x < tileArray.length; x++) {
                 for (int y = 0; y < tileArray[x].length; y++) {
-                    //System.out.println("x , y: " + x + ", " + y);
                     g.drawImage(tileArray[x][y].getImage(), x * w.getTileWidth(), y * w.getTileHeight(), this);
                 }
             }

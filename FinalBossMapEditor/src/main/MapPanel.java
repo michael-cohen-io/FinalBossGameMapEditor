@@ -25,21 +25,9 @@ public class MapPanel extends JPanel {
         this.addMouseListener(new MouseListener() {
 
             public void mouseClicked(MouseEvent e) {
-                System.out.println(e.getPoint());
-                /*if (tileArray != null) {
-                    for (int x = 0; x < tileArray.length; x++) {
-                        for (int y = 0; y < tileArray[y].length; y++) {
-                            if(tileArray[x][y].getBounds().containtsPoint(e.getPoint())){
-                                w.setSelectedTile(tileArray[x][y]);
-                            }
-                        }
-                    }
-                }*/
                 int x = e.getPoint().x / w.getTileWidth();
                 int y = e.getPoint().y / w.getTileWidth();
                 tileArray[x][y] = w.getSelectedTile();
-                System.out.println(w.getSelectedTile());
-                //System.out.println(tileArray[x][y]);
                 repaint();
 
             }
@@ -82,10 +70,8 @@ public class MapPanel extends JPanel {
         if (tileArray != null) {
             for (int x = 0; x < tileArray.length; x++) {
                 for (int y = 0; y < tileArray[x].length; y++) {
-                    //System.out.println("x , y: " + x + ", " + y);
                     if(tileArray[x][y] != null){
                         g.drawImage(tileArray[x][y].getImage(), x * w.getTileWidth(), y * w.getTileHeight(), this);
-                        System.out.println("BOOYHA");
                     }
                     
                 }

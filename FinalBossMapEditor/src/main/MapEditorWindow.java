@@ -37,8 +37,8 @@ class MapEditorWindow extends JFrame implements Observer{
     private JFileChooser chooser;
     private ImageSplitter splitter;
     private Tile selectedTile;
-    public static SpritePanel sprites;
     public JScrollPane mapScrollPane;
+    SpritePanel spriteSheet = new SpritePanel(this);
     
     BufferedImage[][] b;
     
@@ -51,6 +51,7 @@ class MapEditorWindow extends JFrame implements Observer{
         JPanel south = new JPanel();
         north.setBackground(Color.white);
         
+        //Fields
         north.add(new JField("Map Width", mapWidth, this));
         north.add(new JField("Map Height", mapHeight, this));
         south.add(new JField("Tile Width", tileWidth, this ));
@@ -61,15 +62,10 @@ class MapEditorWindow extends JFrame implements Observer{
         center.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         
         
-
+        //ScrollPane
         map = new MapPanel(this);
         mapScrollPane = new JScrollPane(map);
         mapScrollPane.setMaximumSize(new Dimension(1080, 720));
-        
-        
-        sprites = new SpritePanel(this);
-        sprites.setBackground(Color.yellow);
-        //sprites.setMaximumSize(new Dimension(300,300));
         
         //Container
         Container c = this.getContentPane();
@@ -78,7 +74,6 @@ class MapEditorWindow extends JFrame implements Observer{
         c.add(south, BorderLayout.SOUTH);
         
         center.add(mapScrollPane);
-        center.add(sprites);
         
         //Set up menu
         addMenu();
@@ -115,15 +110,20 @@ class MapEditorWindow extends JFrame implements Observer{
                                 Tile[][] t = new Tile[splitter.getX()][splitter.getY()]; 
                                 for(int y = 0; y < splitter.getY(); y++ ){
                                     for(int x = 0; x < splitter.getX(); x++ ){
-                                        //tileList.add(new Tile(y + x + 1 , splitter.getTile(x, y)));
                                         t[x][y] = new Tile (x+y+1, splitter.getTile(x,y), new Bounds(x*tileWidth,y*tileHeight, tileWidth, tileHeight));
-                                        //imageList.add(splitter.getTile(x,y));
                                     }   
-                                    //MapEditorWindow.sprites.drawBufferedImages(imageList);
                                 }
-                                //MapEditorWindow.sprites.drawBufferedImages(splitter.getTileArray());
-                                MapEditorWindow.sprites.drawTiles(t);
                                 
+                                
+                                JFrame spriteSheetFrame = new JFrame(chooser.getSelectedFile().getPath());
+                                
+                                
+                                spriteSheetFrame.setContentPane(spriteSheet);
+                                spriteSheetFrame.setSize(splitter.getSheetWidth(), splitter.getSheetHeight());
+                                spriteSheetFrame.setResizable(false);
+                                spriteSheetFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                spriteSheetFrame.setVisible(true);
+                                spriteSheet.drawTiles(t);
                                 
                             } catch (IOException ex) {
                                 Logger.getLogger(MapEditorWindow.class.getName()).log(Level.SEVERE, null, ex);
