@@ -115,7 +115,7 @@ class MapEditorWindow extends JFrame implements Observer {
         JMenu saveMenu = new JMenu("Save to...");
         JMenu showMenu = new JMenu("Show");
         showGridItem = new JCheckBoxMenuItem("Show Grid", true);
-        JMenuItem run = new JMenuItem("Choose Sprite Sheet");
+        JMenuItem run = new JMenuItem("Choose Sprite Sheet...");
         
         
         JMenuItem saveToXML = new JMenuItem("XML");
