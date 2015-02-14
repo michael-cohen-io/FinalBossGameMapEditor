@@ -17,12 +17,11 @@ public class SpritePanel extends JPanel {
     MapEditorWindow w;
     ArrayList<BufferedImage> imageList = new ArrayList<BufferedImage>();
     BufferedImage[][] imageArray;
-
+    int width, height;
     Tile[][] tileArray;
 
-    public SpritePanel(final MapEditorWindow w) {
+    public SpritePanel(final MapEditorWindow w, int width, int height) {
         this.w = w;
-        this.setMaximumSize(new Dimension(352, 288));
         this.addMouseListener(new MouseListener() {
 
             public void mouseClicked(MouseEvent e) {
@@ -72,6 +71,17 @@ public class SpritePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        int panelWidth = w.getTileWidth() * w.getMapWidth();
+        int panelHeight = w.getTileHeight() * w.getMapHeight();
+        
+        for(int x = w.getTileWidth(); x <= width; x += w.getTileWidth() ){
+            g.drawLine(x,0,x,panelHeight);
+        }
+        
+        for(int y = w.getTileHeight(); y <= height; y += w.getTileHeight() ){
+            g.drawLine(0,y,panelWidth,y);
+        }
+        
         if (tileArray != null) {
             for (int x = 0; x < tileArray.length; x++) {
                 for (int y = 0; y < tileArray[x].length; y++) {
