@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 
 /**
@@ -32,7 +33,7 @@ public class MapPanel extends JPanel {
                 repaint();
 
             }
-
+            
             public void mousePressed(MouseEvent e) {
             }
 
@@ -45,6 +46,21 @@ public class MapPanel extends JPanel {
             public void mouseExited(MouseEvent e) {
             }
 
+        });
+        
+        this.addMouseMotionListener(new MouseMotionListener(){
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                int x = e.getPoint().x / w.getTileWidth();
+                int y = e.getPoint().y / w.getTileWidth();
+                tileArray[x][y] = w.getSelectedTile();
+                repaint();
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {}
+        
         });
     }
 
