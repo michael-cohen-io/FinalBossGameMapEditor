@@ -17,6 +17,10 @@ public class Tile {
         this.bounds = bounds;
     }
     
+    //for use when we have a class that maps ids -> full Tile object
+    public Tile(int  id){
+    	this.id = id;
+    }
     public Bounds getBounds(){
         return bounds;
     }
