@@ -25,8 +25,8 @@ public class SpritePanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (tileArray != null) {
                     for (int x = 0; x < tileArray.length; x++) {
-                        for (int y = 0; y < tileArray[y].length; y++) {
-                            if(tileArray[x][y].getBounds().containtsPoint(e.getPoint())){
+                        for (int y = 0; y < tileArray[x].length; y++) {
+                            if (tileArray[x][y].getBounds().containtsPoint(e.getPoint())) {
                                 w.setSelectedTile(tileArray[x][y]);
                             }
                         }
@@ -35,14 +35,21 @@ public class SpritePanel extends JPanel {
 
             }
 
-            public void mousePressed(MouseEvent e) {}
-            public void mouseReleased(MouseEvent e) {}
-            public void mouseEntered(MouseEvent e) {}
-            public void mouseExited(MouseEvent e) {}
+            public void mousePressed(MouseEvent e) {
+            }
+
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            public void mouseExited(MouseEvent e) {
+            }
 
         });
     }
-    
+
     public Tile[][] getTileArray() {
         return tileArray;
     }
@@ -60,16 +67,8 @@ public class SpritePanel extends JPanel {
         super.paintComponent(g);
         int panelWidth = w.getTileWidth() * w.getMapWidth();
         int panelHeight = w.getTileHeight() * w.getMapHeight();
-        
-        
-        for(int x = w.getTileWidth(); x <= width; x += w.getTileWidth() ){
-            g.drawLine(x,0,x,panelHeight);
-        }
-        
-        for(int y = w.getTileHeight(); y <= height; y += w.getTileHeight() ){
-            g.drawLine(0,y,panelWidth,y);
-        }
-        
+
+        //Draw Tiles
         if (tileArray != null) {
             for (int x = 0; x < tileArray.length; x++) {
                 for (int y = 0; y < tileArray[x].length; y++) {
@@ -77,8 +76,18 @@ public class SpritePanel extends JPanel {
                 }
             }
         }
+
+        if (w.showGridItem.getState() == true) {
+            //Draw Grid
+            for (int x = w.getTileWidth(); x <= width; x += w.getTileWidth()) {
+                g.drawLine(x, 0, x, panelHeight);
+            }
+
+            for (int y = w.getTileHeight(); y <= height; y += w.getTileHeight()) {
+                g.drawLine(0, y, panelWidth, y);
+            }
+        }
+
     }
-    
-    
 
 }
