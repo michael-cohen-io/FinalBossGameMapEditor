@@ -37,6 +37,7 @@ public class JField extends JPanel{
         //Add Listeners
         decrement.addActionListener(new ButtonClickListener());
         increment.addActionListener(new ButtonClickListener());
+        
     }
     
     public int getValue() {

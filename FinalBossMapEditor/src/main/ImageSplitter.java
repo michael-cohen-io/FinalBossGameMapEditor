@@ -42,7 +42,7 @@ public class ImageSplitter {
 		for( int j = 0; j < y; ++j){
 			for( int i = 0; i < x; ++i){
 				image[i][j] = img.getSubimage(xPos, yPos, tileWidth, tileHeight);
-				System.out.println("i=" + i + " j=" + j + " " + xPos + " , " +  yPos);
+				//System.out.println("i=" + i + " j=" + j + " " + xPos + " , " +  yPos);
 				xPos += tileWidth;
 
 			}

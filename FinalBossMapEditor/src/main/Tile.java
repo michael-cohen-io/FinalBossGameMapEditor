@@ -1,17 +1,23 @@
 package main;
 
 import java.awt.image.BufferedImage;
-
 /**
  *
  * @author ChrisMoscoso
  */
 public class Tile {
     private int id;
+    private BufferedImage image;
+    private Bounds bounds;
     
+    public Tile(int id, BufferedImage image, Bounds bounds){
+        this.id = id;
+        this.image = image;
+        this.bounds = bounds;
+    }
     
-    public Tile(){
-        
+    public Bounds getBounds(){
+        return bounds;
     }
 
     public int getId() {
@@ -30,5 +36,4 @@ public class Tile {
         this.image = image;
     }
     
-    private BufferedImage image;
 }

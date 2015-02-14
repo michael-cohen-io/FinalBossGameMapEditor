@@ -36,9 +36,12 @@ class MapEditorWindow extends JFrame implements Observer{
     private MapPanel map;
     private JFileChooser chooser;
     private ImageSplitter splitter;
+    private Tile selectedTile;
+    public static SpritePanel sprites;
     
     BufferedImage[][] b;
     
+    ArrayList<BufferedImage> imageList = new ArrayList<BufferedImage>();
     ArrayList<Tile> tileList = new ArrayList<Tile>();
     
 
@@ -61,13 +64,12 @@ class MapEditorWindow extends JFrame implements Observer{
 
         map = new MapPanel(this);
         JScrollPane mapScrollPane = new JScrollPane(map);
-        mapScrollPane.setMaximumSize(new Dimension(this.getTileWidth() * this.getMapWidth(), this.getTileHeight() * this.getMapHeight()));
-        //mapScrollPane.setMaximumSize(new Dimension(Main.WIDTH, Main.HEIGHT));
+        //mapScrollPane.setMaximumSize(new Dimension(this.getTileWidth() * this.getMapWidth(), this.getTileHeight() * this.getMapHeight()));
         
         
-        JPanel sprites = new JPanel();
+        sprites = new SpritePanel(this);
         sprites.setBackground(Color.yellow);
-        sprites.setMaximumSize(new Dimension(300,300));
+        //sprites.setMaximumSize(new Dimension(300,300));
         
         //Container
         Container c = this.getContentPane();
@@ -110,12 +112,18 @@ class MapEditorWindow extends JFrame implements Observer{
                             try {
                                 BufferedImage image = ImageIO.read(file); //add choose method call here
                                 splitter = new ImageSplitter(image, tileWidth, tileHeight);
+                                Tile[][] t = new Tile[splitter.getX()][splitter.getY()]; 
                                 for(int y = 0; y < splitter.getY(); y++ ){
                                     for(int x = 0; x < splitter.getX(); x++ ){
-                                        
                                         //tileList.add(new Tile(y + x + 1 , splitter.getTile(x, y)));
+                                        t[x][y] = new Tile (x+y+1, splitter.getTile(x,y), new Bounds(x*tileWidth,y*tileHeight, tileWidth, tileHeight));
+                                        //imageList.add(splitter.getTile(x,y));
                                     }   
+                                    //MapEditorWindow.sprites.drawBufferedImages(imageList);
                                 }
+                                //MapEditorWindow.sprites.drawBufferedImages(splitter.getTileArray());
+                                MapEditorWindow.sprites.drawTiles(t);
+                                
                                 
                             } catch (IOException ex) {
                                 Logger.getLogger(MapEditorWindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -189,6 +197,14 @@ class MapEditorWindow extends JFrame implements Observer{
             tileHeight = ((ObservableInt) o).getValue();
             map.resetPanelHeight();
         }
+    }
+
+    public void setSelectedTile(Tile t) {
+        this.selectedTile = t;
+    }
+    
+    public Tile getSelectedTile() {
+        return this.selectedTile;
     }
     
 }
