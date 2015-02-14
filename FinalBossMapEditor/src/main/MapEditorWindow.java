@@ -32,12 +32,13 @@ import javax.swing.JScrollPane;
  */
 class MapEditorWindow extends JFrame implements Observer{
     
-    private int mapWidth = 10, mapHeight = 10, tileWidth = 32, tileHeight = 32;
+    private int mapWidth = 100, mapHeight = 100, tileWidth = 32, tileHeight = 32;
     private MapPanel map;
     private JFileChooser chooser;
     private ImageSplitter splitter;
     private Tile selectedTile;
     public static SpritePanel sprites;
+    public JScrollPane mapScrollPane;
     
     BufferedImage[][] b;
     
@@ -62,8 +63,8 @@ class MapEditorWindow extends JFrame implements Observer{
         
 
         map = new MapPanel(this);
-        JScrollPane mapScrollPane = new JScrollPane(map);
-        mapScrollPane.setMaximumSize(new Dimension(this.getTileWidth() * this.getMapWidth(), this.getTileHeight() * this.getMapHeight()));
+        mapScrollPane = new JScrollPane(map);
+        mapScrollPane.setMaximumSize(new Dimension(1080, 720));
         
         
         sprites = new SpritePanel(this);
@@ -155,6 +156,9 @@ class MapEditorWindow extends JFrame implements Observer{
 
     public void setMapWidth(int mapWidth) {
         this.mapWidth = mapWidth;
+        map.resize();
+        mapScrollPane.revalidate();
+        
     }
 
     public int getMapHeight() {
@@ -163,6 +167,8 @@ class MapEditorWindow extends JFrame implements Observer{
 
     public void setMapHeight(int mapHeight) {
         this.mapHeight = mapHeight;
+        map.resize();
+        mapScrollPane.revalidate();
     }
 
     public int getTileWidth() {

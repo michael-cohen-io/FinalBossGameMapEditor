@@ -19,10 +19,9 @@ public class MapPanel extends JPanel {
     
     public MapPanel(final MapEditorWindow w){
         this.w = w;
-        panelWidth = w.getMapWidth() * w.getTileWidth();
-        panelHeight = w.getMapHeight() * w.getTileHeight();
+        this.resize();
         tileArray = new Tile[w.getMapWidth()][w.getMapHeight()];
-        this.setMaximumSize(new Dimension(panelWidth, panelHeight));
+        
         this.addMouseListener(new MouseListener() {
 
             public void mouseClicked(MouseEvent e) {
@@ -61,6 +60,12 @@ public class MapPanel extends JPanel {
     public void resetPanelHeight(){
         panelHeight = w.getMapHeight() * w.getTileHeight();
         repaint();
+    }
+    
+    public void resize(){
+        panelWidth = w.getMapWidth() * w.getTileWidth();
+        panelHeight = w.getMapHeight() * w.getTileHeight();
+        this.setPreferredSize(new Dimension(panelWidth, panelHeight));
     }
     
     @Override
