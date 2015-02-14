@@ -71,14 +71,16 @@ class MapEditorWindow extends JFrame implements Observer{
         Container c = this.getContentPane();
         c.add(north, BorderLayout.NORTH);
         c.add(center, BorderLayout.CENTER);
-        c.add(south, BorderLayout.SOUTH);
+        //c.add(south, BorderLayout.SOUTH); //commented out height and width selection
         
         center.add(mapScrollPane);
         
-        //Set up menu
-        addMenu();
         //Set up jChooser
         chooser = new JFileChooser();
+        
+        //Set up menu
+        addMenu();
+       
         
         //Set up Window
         this.setTitle("FINAL BOSS Map Editor v1");
@@ -92,7 +94,7 @@ class MapEditorWindow extends JFrame implements Observer{
     private void addMenu(){
     	JMenu fileMenu = new JMenu("File");
 		JMenuItem run = new JMenuItem("Choose Sprite Sheet");
-                JMenuItem save = new JMenuItem("Save Map XML");
+        JMenuItem save = new JMenuItem("Save Map XML");
 		JMenuItem exit = new JMenuItem("Exit");
 		
 		run.addActionListener(new ActionListener()
@@ -141,6 +143,22 @@ class MapEditorWindow extends JFrame implements Observer{
 
 		});
 		
+		save.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				int choice = chooser.showSaveDialog(null);
+				
+				if(choice == JFileChooser.APPROVE_OPTION){
+					File saveFile = chooser.getSelectedFile();
+                    save( saveFile );	
+                 }
+			}
+
+		});
+		
+		
+		
 		fileMenu.add(run);
                 fileMenu.add(save);
 		fileMenu.add(exit);
@@ -148,6 +166,12 @@ class MapEditorWindow extends JFrame implements Observer{
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(fileMenu);
 		this.setJMenuBar(menuBar);
+    }
+    
+    private void save(File saveFile){
+    	XMLWriter writer = new XMLWriter(map.getTileArray() , 
+    			saveFile, mapWidth, mapHeight);
+    	//writer.save();
     }
     
     public int getMapWidth() {
