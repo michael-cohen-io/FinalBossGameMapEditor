@@ -50,11 +50,9 @@ class MapEditorWindow extends JFrame implements Observer {
     private JPanel previewSelectedTile;
     public JScrollPane mapScrollPane;
     public JCheckBoxMenuItem showGridItem;
-    SpritePanel spriteSheet = new SpritePanel(this);
+    public SpritePanel spriteSheet = new SpritePanel(this);
 
     BufferedImage[][] b;
-
-    ArrayList<Tile> tileList = new ArrayList<Tile>();
 
     public MapEditorWindow() {
         JPanel north = new JPanel();
@@ -104,7 +102,7 @@ class MapEditorWindow extends JFrame implements Observer {
 
         //Set up jChooser
         chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File("."));
+        chooser.setCurrentDirectory(new File("./src/resources"));
 
         //Set up menu
         addMenu();
@@ -213,7 +211,6 @@ class MapEditorWindow extends JFrame implements Observer {
                 File loadFile = null;
                 loadFile = getFile();
                 Tile[][] tiles = getTilesFromLoad(loadFile);
-                
                     
         }
            

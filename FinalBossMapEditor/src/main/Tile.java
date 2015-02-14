@@ -16,11 +16,14 @@ public class Tile {
         this.image = image;
         this.bounds = bounds;
     }
-    
-    //for use when we have a class that maps ids -> full Tile object
-    public Tile(int  id){
-    	this.id = id;
+    public Tile(int id, BufferedImage image){
+        this(id, image, null);
     }
+    
+    public Tile(int id){
+        this.id = id;
+    }
+    
     public Bounds getBounds(){
         return bounds;
     }
