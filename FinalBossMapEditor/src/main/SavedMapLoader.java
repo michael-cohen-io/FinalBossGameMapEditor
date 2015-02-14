@@ -33,28 +33,15 @@ public class SavedMapLoader {
 		Tile[][] tiles = new Tile[w][h];
 		Element e = doc.getDocumentElement();
 		List<Element> elements = XMLReader.getElements("tile", e);
-		//int i = 0; 
-		//int j = 0;
-		
-		for(Element el : elements){
-			//System.out.println("i: " + i + " j: " + j);
-			//System.out.println(el.getAttribute("tid"));
-			int id = Integer.parseInt(el.getAttribute("gid"));
-			for(int i = 0; i < w; i++){
-				for(int j = 0; j < h; j++){
-					tiles[i][j] = new Tile(id, new Bounds(i * 32, j * 32, 32, 32));
-				}
-			}
-			//tiles[i][j] = new Tile(id, new Bounds(i * 32, j * 32, 32, 32));
-			/*++j;
-			
-			if(j >= w ){
-				j = 0;
-				++i;
-			}
-			if(i >= h )
-				break;*/
-		}
+                
+                
+                for(int counter = 0; counter < elements.size(); counter++){
+                    int id = Integer.parseInt(elements.get(counter).getAttribute("gid"));
+                    int i = counter / w;
+                    int j = counter % w;
+                    tiles[j][i] = new Tile(id, new Bounds(i * 32, j * 32, 32, 32));
+                    System.out.println(id);
+                }
 		
 		return tiles;
 	}
