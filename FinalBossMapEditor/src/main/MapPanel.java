@@ -106,6 +106,13 @@ public class MapPanel extends JPanel {
 
         }
     }
+    
+    public void loadMap(Tile[][] tiles){
+    	tileArray = tiles;
+    	w.setMapHeight(tiles[0].length);
+    	w.setMapWidth(tiles.length);
+    	this.repaint();
+    }
 
     public Tile[][] getTileArray() {
         return tileArray;

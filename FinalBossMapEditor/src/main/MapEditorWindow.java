@@ -104,6 +104,7 @@ class MapEditorWindow extends JFrame implements Observer {
 
         //Set up jChooser
         chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File("."));
 
         //Set up menu
         addMenu();
@@ -208,32 +209,17 @@ class MapEditorWindow extends JFrame implements Observer {
         loadMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 //chooser.setSelectedFile(new File("untitled.xml"));
-                int choice = chooser.showSaveDialog(null);
-
-                if (choice == JFileChooser.APPROVE_OPTION) {
-                    File loadFile = chooser.getSelectedFile();
-                    try {
-						InputStream is = new FileInputStream(loadFile);
-						Tile[][] tiles = SavedMapLoader.getTiles(is, getMapWidth(), getMapHeight());
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                    //save(saveFile);
- catch (ParserConfigurationException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (SAXException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                }
-            }
-
+                //int choice = chooser.showSaveDialog(null);
+                File loadFile = null;
+                loadFile = getFile();
+                Tile[][] tiles = getTilesFromLoad(loadFile);
+                
+                    
+        }
+           
         });
+
+        
 
         //File
         fileMenu.add(run);
@@ -284,6 +270,24 @@ class MapEditorWindow extends JFrame implements Observer {
     public int getMapWidth() {
         return mapWidth;
     }
+    
+    private Tile[][] getTilesFromLoad(File f){
+    	Tile[][] tiles = null;
+    	try {
+			InputStream is = new FileInputStream(f);
+			try {
+				tiles = SavedMapLoader.getTiles(is, getMapWidth(), getMapHeight());
+			} catch (ParserConfigurationException | SAXException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+    	
+    	return tiles;
+    }
 
     public void setMapWidth(int mapWidth) {
         this.mapWidth = mapWidth;
@@ -316,6 +320,14 @@ class MapEditorWindow extends JFrame implements Observer {
 
     public void setTileHeight(int TileHeight) {
         this.tileHeight = TileHeight;
+    }
+    
+    private File getFile(){
+    	File file = null;
+    	if(chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
+    		file = chooser.getSelectedFile();
+    	}
+    	return file;
     }
 
     @Override
