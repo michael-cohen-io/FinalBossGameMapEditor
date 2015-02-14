@@ -53,6 +53,11 @@ public class XMLWriter {
 				if(tilesToSave[i][j] == null){
 					out.println(tileTag + "\"0\"" + tileCloseTag);
 				}
+				
+				else{
+					int tileId = tilesToSave[i][j].getId();
+					out.println(tileTag + "\"" + tileId + "\"" + tileCloseTag);
+				}
 			}
 		}
 		
