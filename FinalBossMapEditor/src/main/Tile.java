@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.image.BufferedImage;
+
 /**
  *
  * @author ChrisMoscoso

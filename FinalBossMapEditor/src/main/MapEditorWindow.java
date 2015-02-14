@@ -41,7 +41,6 @@ class MapEditorWindow extends JFrame implements Observer{
     
     BufferedImage[][] b;
     
-    ArrayList<BufferedImage> imageList = new ArrayList<BufferedImage>();
     ArrayList<Tile> tileList = new ArrayList<Tile>();
     
 
