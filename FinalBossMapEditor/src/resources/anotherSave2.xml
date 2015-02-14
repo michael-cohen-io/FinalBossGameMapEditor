@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map width="5" height="5">
+<layer>
+<data>
+<tile gid="1"/>
+<tile gid="1"/>
+<tile gid="1"/>
+<tile gid="1"/>
+<tile gid="1"/>
+<tile gid="2"/>
+<tile gid="2"/>
+<tile gid="2"/>
+<tile gid="2"/>
+<tile gid="2"/>
+<tile gid="2"/>
+<tile gid="2"/>
+<tile gid="2"/>
+<tile gid="2"/>
+<tile gid="2"/>
+<tile gid="2"/>
+<tile gid="2"/>
+<tile gid="3"/>
+<tile gid="3"/>
+<tile gid="3"/>
+<tile gid="3"/>
+<tile gid="3"/>
+<tile gid="0"/>
+<tile gid="0"/>
+<tile gid="0"/>
+</data>
+</layer>
+</map>
