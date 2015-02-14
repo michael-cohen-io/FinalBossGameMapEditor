@@ -63,7 +63,7 @@ class MapEditorWindow extends JFrame implements Observer{
 
         map = new MapPanel(this);
         JScrollPane mapScrollPane = new JScrollPane(map);
-        //mapScrollPane.setMaximumSize(new Dimension(this.getTileWidth() * this.getMapWidth(), this.getTileHeight() * this.getMapHeight()));
+        mapScrollPane.setMaximumSize(new Dimension(this.getTileWidth() * this.getMapWidth(), this.getTileHeight() * this.getMapHeight()));
         
         
         sprites = new SpritePanel(this);
