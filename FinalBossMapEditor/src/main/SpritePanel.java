@@ -15,12 +15,10 @@ import javax.swing.JPanel;
 public class SpritePanel extends JPanel {
 
     MapEditorWindow w;
-    ArrayList<BufferedImage> imageList = new ArrayList<BufferedImage>();
-    BufferedImage[][] imageArray;
     int width, height;
     Tile[][] tileArray;
 
-    public SpritePanel(final MapEditorWindow w, int width, int height) {
+    public SpritePanel(final MapEditorWindow w) {
         this.w = w;
         this.addMouseListener(new MouseListener() {
 
@@ -48,22 +46,11 @@ public class SpritePanel extends JPanel {
     public Tile[][] getTileArray() {
         return tileArray;
     }
-    
-
-    public void drawBufferedImages(ArrayList<BufferedImage> b) {
-        this.setMaximumSize(new Dimension(b.size() * w.getTileWidth(), w.getTileHeight()));
-        imageList = b;
-        this.repaint();
-    }
-
-    public void drawBufferedImages(BufferedImage[][] b) {
-        this.setMaximumSize(new Dimension(b.length * w.getTileWidth(), b[0].length * w.getTileHeight()));
-        imageArray = b;
-        this.repaint();
-    }
 
     public void drawTiles(Tile[][] t) {
-        this.setMaximumSize(new Dimension(t.length * w.getTileWidth(), t[0].length * w.getTileHeight()));
+        this.width = t.length * w.getTileWidth();
+        this.height = t[0].length * w.getTileHeight();
+        this.setPreferredSize(new Dimension(width, height));
         tileArray = t;
         this.repaint();
     }
@@ -73,6 +60,7 @@ public class SpritePanel extends JPanel {
         super.paintComponent(g);
         int panelWidth = w.getTileWidth() * w.getMapWidth();
         int panelHeight = w.getTileHeight() * w.getMapHeight();
+        
         
         for(int x = w.getTileWidth(); x <= width; x += w.getTileWidth() ){
             g.drawLine(x,0,x,panelHeight);
@@ -90,5 +78,7 @@ public class SpritePanel extends JPanel {
             }
         }
     }
+    
+    
 
 }
