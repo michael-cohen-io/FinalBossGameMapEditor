@@ -42,7 +42,7 @@ import org.xml.sax.SAXException;
  */
 class MapEditorWindow extends JFrame implements Observer {
 
-    private int mapWidth = 100, mapHeight = 100, tileWidth = 32, tileHeight = 32;
+    private int mapWidth = 10, mapHeight = 10, tileWidth = 32, tileHeight = 32;
     private final MapPanel map;
     private final JFileChooser chooser;
     private ImageSplitter splitter;
@@ -210,7 +210,20 @@ class MapEditorWindow extends JFrame implements Observer {
                 //int choice = chooser.showSaveDialog(null);
                 File loadFile = null;
                 loadFile = getFile();
+                System.out.println(loadFile.exists());
                 Tile[][] tiles = getTilesFromLoad(loadFile);
+                for(int i = 0; i < tiles.length; i++){
+                	for(int j = 0; j < tiles[0].length; j++){
+                		if(tiles[i][j] != null){
+                			System.out.print(tiles[i][j].getId() + " ");
+                		}else{
+                			System.out.print("N ");
+                		}
+                	}
+                	System.out.println();
+                }
+                map.setTileArray(tiles);
+                map.repaint();
                     
         }
            

@@ -10,6 +10,7 @@ public class Tile {
     private int id;
     private BufferedImage image;
     private Bounds bounds;
+    private MapIDTranslator translator = new MapIDTranslator();;
     
     public Tile(int id, BufferedImage image, Bounds bounds){
         this.id = id;
@@ -20,10 +21,23 @@ public class Tile {
         this(id, image, null);
     }
     
+    /*
     public Tile(int id){
-        this.id = id;
-    }
+    	this.id = id;
+    	MapIDTranslator translator = new MapIDTranslator();
+    	this.image = translator.getTile(id);
+    	
     
+    }
+    */
+    
+    //this constructor is called during loading
+    public Tile(int id, Bounds b){
+    	this.id = id;
+    	this.bounds = b;
+    	this.image = translator.getTile(id);
+    	
+    }
     public Bounds getBounds(){
         return bounds;
     }

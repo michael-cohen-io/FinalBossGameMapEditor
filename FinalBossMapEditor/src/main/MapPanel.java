@@ -114,6 +114,10 @@ public class MapPanel extends JPanel {
     	this.repaint();
     }
 
+    public void setTileArray(Tile[][] t){
+    	tileArray = t;
+    }
+    
     public Tile[][] getTileArray() {
         return tileArray;
     }
