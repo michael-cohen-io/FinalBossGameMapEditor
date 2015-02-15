@@ -1,4 +1,4 @@
-package Tests;
+package test;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,8 +9,8 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import main.Tile;
-import main.SavedMapLoader;
+import tilegrid.Tile;
+import utility.SavedMapLoader;
 public class SavedMapLoaderTester {
 	public static void main(String [] args){
 		

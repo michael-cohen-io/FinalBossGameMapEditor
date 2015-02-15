@@ -1,4 +1,4 @@
-package Tests;
+package test;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,7 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import main.ImageSplitter;
+import utility.ImageSplitter;
 /*
  * @author: hanif
  */

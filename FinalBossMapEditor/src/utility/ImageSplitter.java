@@ -1,4 +1,4 @@
-package main;
+package utility;
 
 import java.awt.image.BufferedImage;
 
@@ -24,8 +24,9 @@ public class ImageSplitter {
     public ImageSplitter(BufferedImage i,
             int tWidth, int tHeight) {
         img = i;
-        sheetWidth = i.getWidth();
-        sheetHeight = i.getHeight();
+        
+        sheetWidth = img.getWidth();
+        sheetHeight = img.getHeight();
         tileHeight = tHeight;
         tileWidth = tWidth;
 

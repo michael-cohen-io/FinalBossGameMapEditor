@@ -1,4 +1,4 @@
-package main;
+package panel;
 
 import java.util.Observable;
 
@@ -11,7 +11,7 @@ public class ObservableInt extends Observable {
 
     int value;
 
-    ObservableInt(String title, int value) {
+    public ObservableInt(String title, int value) {
         this.title = title; 
         this.value = value;
     }
